@@ -1,0 +1,27 @@
+* {
+    font-family: zain, sans-serif;
+}
+
+html {
+    background-color: rgb(255, 255, 255);
+}
+
+body {
+    width: 900px;
+    margin: 0 auto;
+}
+
+h1 {
+    text-align: center;
+    font-size: 48px;
+}
+
+ul {
+    list-style-type: none;
+    display: flex;
+}
+
+li {
+    margin: 2px auto;
+    font-size: 36px;
+}
