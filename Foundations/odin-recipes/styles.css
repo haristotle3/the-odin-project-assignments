@@ -24,4 +24,19 @@ ul {
 li {
     margin: 2px auto;
     font-size: 36px;
+
+    text-align: center;
+
+    border: 5px solid rgb(184, 120, 0);
+    background-color: orange;
+    border-radius: 10px;
+    
+    width: 200px;
+}
+
+a {
+    display: block;
+    text-decoration: none;
+    color: white;
+    width: 200px;
 }
