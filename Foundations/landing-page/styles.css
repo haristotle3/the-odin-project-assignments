@@ -143,4 +143,31 @@ img {
 /* Section two CSS END */
 
 /* Section three CSS START */
-/* Section three CSS END */
+.three {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+  background-color: #e5e7eb;
+
+  padding: 64px 192px;
+
+}
+
+.three blockquote {
+  font-size: 36px;
+  font-weight: lighter;
+  font-style: italic;
+  color: #1f2937;
+
+  padding: 0;
+  margin: 0;
+}
+
+.three p {
+  margin-left: auto;
+  font-size: large;
+  font-weight: bold;
+}
+/* Section three CSS  END */
