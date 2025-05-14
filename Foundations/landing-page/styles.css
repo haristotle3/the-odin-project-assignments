@@ -152,7 +152,6 @@ img {
   background-color: #e5e7eb;
 
   padding: 64px 192px;
-
 }
 
 .three blockquote {
@@ -171,3 +170,49 @@ img {
   font-weight: bold;
 }
 /* Section three CSS  END */
+
+/* Section four CSS  START */
+.four {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  padding: 64px;
+}
+
+.four .flex-container {
+  background-color: #3882f6;
+
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 60px;
+
+  padding: 48px 144px;
+  border-radius: 12px;
+}
+
+.four .flex-container button {
+  background-color: #3882f6;
+  color: #f9faf8;
+  font-size: 16px;
+  font-weight: 900;
+
+  width: 128px;
+  height: 32px;
+
+  border: 2px solid #f9faf8;
+  border-radius: 9px;
+}
+
+.four .flex-container .message h1 {
+  color: #f9faf8;
+  padding: 0;
+  margin: 0;
+}
+.four .flex-container .message p {
+  color: #e5e7eb;
+    padding: 0;
+  margin: 0;
+}
+/* Section four CSS  END */
