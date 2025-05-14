@@ -1,0 +1,41 @@
+* {
+  font-family: "Roboto", sans-serif;
+}
+
+
+/* HEADER CSS START */
+body {
+  display: flex;
+  flex-direction: column;
+  margin: 0;
+}
+
+header {
+  display: flex;
+  justify-content: space-between;
+align-items: baseline;
+  margin: 0;
+  padding: 0 64px;
+  font-size: large;
+
+  background-color: #1f2937;
+  color: white;
+}
+
+header p {
+    font-size: x-large;
+    font-weight: 900;
+}
+
+header ul {
+  list-style-type: none;
+
+  display: flex;
+  gap: 18px;
+}
+
+header ul a {
+  text-decoration: none;
+  color: white;
+}
+/* HEADER CSS END */
