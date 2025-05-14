@@ -2,7 +2,6 @@
   font-family: "Roboto", sans-serif;
 }
 
-
 /* HEADER CSS START */
 body {
   display: flex;
@@ -13,9 +12,9 @@ body {
 header {
   display: flex;
   justify-content: space-between;
-align-items: baseline;
+  align-items: center;
   margin: 0;
-  padding: 0 64px;
+  padding: 0 128px;
   font-size: large;
 
   background-color: #1f2937;
@@ -23,8 +22,8 @@ align-items: baseline;
 }
 
 header p {
-    font-size: x-large;
-    font-weight: 900;
+  font-size: 24px;
+  color: #f9faf8;
 }
 
 header ul {
@@ -36,6 +35,59 @@ header ul {
 
 header ul a {
   text-decoration: none;
-  color: white;
+  color: #e5e7eb;
 }
 /* HEADER CSS END */
+
+img {
+  height: 300px;
+  width: auto;
+
+}
+
+/* Section one CSS START */
+.one {
+  display: flex;
+  justify-content: center;
+  padding: 64px 128px;
+  gap: 64px;
+
+  background-color: #1f2937;
+  color: white;
+
+}
+
+.one .text {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.one .text h1 {
+    margin: 0;
+  font-size: 48px;
+  color: #f9faf8;
+  font-weight: 800;
+
+}
+
+.one .text p {
+        margin: 0;
+  font-size: 18px;
+  color: #e5e7eb;
+}
+
+.one .text button {
+  background-color: #3882f6;
+  color: #f9faf8;
+  font-size: 16px;
+  font-weight: 900;
+
+  width: 128px;
+  height: 32px;
+
+  border: none;
+  border-radius: 9px;
+}
+
+/* Section two CSS START */
