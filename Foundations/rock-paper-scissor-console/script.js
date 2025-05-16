@@ -7,59 +7,71 @@ function getComputerChoice() {
 
 function getHumanChoice() {
   let choice = prompt("Rock or Paper or Scissor ?", "rock");
-  return choice.toLowerCase();
+  return choice.trim().toLowerCase();
 }
 
-function determineWinner(humanChoice, computerChoice) {}
+const INVALID_CHOICE = 400;
 
 function playRound(humanChoice, computerChoice) {
   switch (humanChoice) {
     case "rock":
-      if (computerChoice === "rock") console.log("Tie");
+      if (computerChoice === "rock") return -1;
       else if (computerChoice === "paper") {
-        console.log("You lose");
-        computerScore++;
+        return 0;
       } else if (computerChoice === "scissor") {
-        console.log("You Win!");
-        humanScore++;
+        return 1;
       }
       break;
 
     case "paper":
       if (computerChoice === "rock") {
-        console.log("You Win!");
-        humanScore++;
+        return 1;
       } else if (computerChoice === "paper") {
-        console.log("Tie");
+        return -1;
       } else if (computerChoice === "scissor") {
-        console.log("You lose");
-        computerScore++;
+        return 0;
       }
       break;
 
     case "scissor":
       if (computerChoice === "rock") {
-        console.log("You lose");
-        computerScore++;
+        return 0;
       } else if (computerChoice === "paper") {
-        console.log("You Win!");
-        humanScore++;
+        return 1;
       } else if (computerChoice === "scissor") {
-        console.log("Tie");
+        return -1;
       }
       break;
 
     default:
-      console.log("Please enter a valid choice.");
+      alert("Please enter a valid choice.");
+      return INVALID_CHOICE;
   }
 }
 
-let humanScore = 0,
-  computerScore = 0;
+function playGame(numRounds) {
+  let humanScore = 0,
+    computerScore = 0;
 
-let humanChoice = getHumanChoice();
-let computerChoice = getComputerChoice();
+  for (let i = 0; i < numRounds; i++) {
+    let humanChoice = getHumanChoice();
+    let computerChoice = getComputerChoice();
 
-playRound(humanChoice, computerChoice);
-console.log(humanScore);
-console.log(computerScore);
+    console.log(("Human : " + humanChoice).padEnd(32), "Computer : " + computerChoice);
+    let roundResult = playRound(humanChoice, computerChoice);
+
+    if (roundResult == 1) humanScore++;
+    else if (roundResult == 0) computerScore++;
+    else if (roundResult == INVALID_CHOICE) i--;
+  }
+
+  console.log("Final scores:");
+  console.log("Human : ", humanScore);
+  console.log("Computer : ", computerScore);
+
+  if (humanScore == computerScore) console.log("Match Tied!");
+  else if (humanScore > computerScore) console.log("Human Wins!");
+  else if (humanScore < computerScore) console.log("Computer Wins!");
+}
+
+playGame(5);
