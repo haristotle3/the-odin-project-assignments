@@ -10,18 +10,56 @@ function getHumanChoice() {
   return choice.toLowerCase();
 }
 
-function playRound() {
-  let humanChoice = getHumanChoice();
-  let computerChoice = getComputerChoice();
+function determineWinner(humanChoice, computerChoice) {}
 
+function playRound(humanChoice, computerChoice) {
   switch (humanChoice) {
     case "rock":
-      if (computerChoice === "rock") console.log("");
-      else if (computerChoice === "paper") console.log("");
-      else if (computerChoice === "scissor") console.log("");
+      if (computerChoice === "rock") console.log("Tie");
+      else if (computerChoice === "paper") {
+        console.log("You lose");
+        computerScore++;
+      } else if (computerChoice === "scissor") {
+        console.log("You Win!");
+        humanScore++;
+      }
       break;
+
+    case "paper":
+      if (computerChoice === "rock") {
+        console.log("You Win!");
+        humanScore++;
+      } else if (computerChoice === "paper") {
+        console.log("Tie");
+      } else if (computerChoice === "scissor") {
+        console.log("You lose");
+        computerScore++;
+      }
+      break;
+
+    case "scissor":
+      if (computerChoice === "rock") {
+        console.log("You lose");
+        computerScore++;
+      } else if (computerChoice === "paper") {
+        console.log("You Win!");
+        humanScore++;
+      } else if (computerChoice === "scissor") {
+        console.log("Tie");
+      }
+      break;
+
+    default:
+      console.log("Please enter a valid choice.");
   }
 }
 
 let humanScore = 0,
   computerScore = 0;
+
+let humanChoice = getHumanChoice();
+let computerChoice = getComputerChoice();
+
+playRound(humanChoice, computerChoice);
+console.log(humanScore);
+console.log(computerScore);
