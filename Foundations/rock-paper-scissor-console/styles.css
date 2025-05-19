@@ -84,3 +84,7 @@ body {
   /* background-color: rgb(255, 63, 63);
     background-color: rgb(57, 255, 110); */
 }
+
+.computer-choice {
+  display: none;
+}
