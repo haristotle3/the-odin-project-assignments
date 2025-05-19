@@ -56,22 +56,29 @@ body {
 .choices-container {
   display: flex;
   justify-content: center;
-
-  margin: auto auto;
-  gap: 100px;
+  align-items: center;
+  margin: 0;
+  padding: 0;
+  gap: 4px;
 }
 
 .choices-container button {
-  height: auto;
-  width: auto;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 0;
+  padding: 0;
 
+  height: auto;
+  max-width: 360px;
+  
   background-color: white;
   border: none;
 }
 
 .choices-container button img {
   height: auto;
-  width: 240px;
+  width: 100%;
 }
 
 .final-res {
