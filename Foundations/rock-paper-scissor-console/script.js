@@ -74,4 +74,3 @@ function playGame(numRounds) {
   else if (humanScore < computerScore) console.log("Computer Wins!");
 }
 
-playGame(5);
