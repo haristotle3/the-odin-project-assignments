@@ -1,3 +1,21 @@
+function initDom() {
+  const choices = document.querySelector(".choices-container");
+
+  choices.addEventListener("click", (e) => {
+    const clickedChoice = e.target.className;
+
+    switch (clickedChoice) {
+      case "rock":
+        // handle click
+        break;
+      case "paper":
+        break;
+      case "scissor":
+        break;
+    }
+  });
+}
+
 function getComputerChoice() {
   const choices = ["rock", "paper", "scissor"];
   let choice = Math.floor(Math.random() * 3);
@@ -57,7 +75,10 @@ function playGame(numRounds) {
     let humanChoice = getHumanChoice();
     let computerChoice = getComputerChoice();
 
-    console.log(("Human : " + humanChoice).padEnd(32), "Computer : " + computerChoice);
+    console.log(
+      ("Human : " + humanChoice).padEnd(32),
+      "Computer : " + computerChoice
+    );
     let roundResult = playRound(humanChoice, computerChoice);
 
     if (roundResult == 1) humanScore++;
@@ -74,3 +95,4 @@ function playGame(numRounds) {
   else if (humanScore < computerScore) console.log("Computer Wins!");
 }
 
+initDom();

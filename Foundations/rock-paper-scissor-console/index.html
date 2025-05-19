@@ -13,7 +13,7 @@
       rel="stylesheet"
     />
 
-    <script src="script.js"></script>
+    <script src="script.js" defer></script>
   </head>
   <body>
     <div class="total-score">
@@ -45,9 +45,13 @@
     </div>
 
     <div class="choices-container">
-      <button class="rock"><img src="images/rock.png" /></button>
-      <button class="paper"><img src="images/paper.png" /></button>
-      <button class="scissor"><img src="images/scissor.png" /></button>
+      <button class="rock"><img class="rock" src="images/rock.png" /></button>
+      <button class="paper">
+        <img class="paper" src="images/paper.png" />
+      </button>
+      <button class="scissor">
+        <img class="scissor" src="images/scissor.png" />
+      </button>
 
       <button class="computer-choice"></button>
     </div>
