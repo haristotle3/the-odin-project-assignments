@@ -1,0 +1,55 @@
+body {
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+
+  font-family: "Freckle Face", sans-serif;
+
+  margin: 0;
+  padding: 0;
+}
+
+.final-res {
+  display: none;
+  text-align: center;
+  text-shadow: 2px 2px 0 black;
+  color: white;
+
+  /* background-color: rgb(255, 63, 63);
+    background-color: rgb(57, 255, 110); */
+}
+
+.total-score, .current-score {
+  display: flex;
+  flex-direction: column;
+
+  background-color: rgb(169, 200, 255);
+
+  text-align: center;
+  text-shadow: 2px 2px 0 black;
+  color: white;
+}
+
+.total-score-heading, .cur-score-heading {
+  font-size: 40px;
+}
+
+.total-score-container, .cur-score-container {
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+}
+
+.choices-container {
+    display: flex;
+}
+
+.choices-container button {
+    height: auto;
+    width: 25%;
+}
+
+.choices-container button img {
+    height: auto;
+    width: 30%;
+}
