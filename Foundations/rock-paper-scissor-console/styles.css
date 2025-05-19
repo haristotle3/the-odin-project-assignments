@@ -42,6 +42,7 @@ body {
 
 .choices-container {
     display: flex;
+    justify-content: center;
 }
 
 .choices-container button {
@@ -51,5 +52,5 @@ body {
 
 .choices-container button img {
     height: auto;
-    width: 30%;
+    width: 240px;
 }
