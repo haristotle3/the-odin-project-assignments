@@ -1,18 +1,12 @@
+const INVALID_CHOICE = 400;
+
 function initDom() {
   const choices = document.querySelector(".choices-container");
 
   choices.addEventListener("click", (e) => {
     const clickedChoice = e.target.className;
-
-    switch (clickedChoice) {
-      case "rock":
-        // handle click
-        break;
-      case "paper":
-        break;
-      case "scissor":
-        break;
-    }
+    const computer
+    playRound(clickedChoice, getComputerChoice());
   });
 }
 
@@ -23,14 +17,11 @@ function getComputerChoice() {
   return choices[choice];
 }
 
-function getHumanChoice() {
-  let choice = prompt("Rock or Paper or Scissor ?", "rock");
-  return choice.trim().toLowerCase();
-}
 
-const INVALID_CHOICE = 400;
-
-function playRound(humanChoice, computerChoice) {
+function playRound(e) {
+  const humanChoice = e.target.className;
+  const computerChoice = getComputerChoice();
+  
   switch (humanChoice) {
     case "rock":
       if (computerChoice === "rock") return -1;
