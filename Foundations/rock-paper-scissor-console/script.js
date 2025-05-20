@@ -2,12 +2,8 @@ const INVALID_CHOICE = 400;
 
 function initDom() {
   const choices = document.querySelector(".choices-container");
-
-  choices.addEventListener("click", (e) => {
-    const clickedChoice = e.target.className;
-    const computer
-    playRound(clickedChoice, getComputerChoice());
-  });
+  choices.addEventListener("click", (e) => playRound(e));
+  return;
 }
 
 function getComputerChoice() {
@@ -17,11 +13,28 @@ function getComputerChoice() {
   return choices[choice];
 }
 
-
 function playRound(e) {
   const humanChoice = e.target.className;
   const computerChoice = getComputerChoice();
-  
+  console.log(computerChoice);
+  let choices = ["rock", "paper", "scissor"];
+  choices = choices.filter((item) => item !== humanChoice);
+
+  // Hide all other choices other than the player's selection
+  for (let choice of choices) {
+    let items = document.querySelectorAll("." + choice);
+
+    for (let item of items) {
+      item.style.display = "none";
+    }
+  }
+
+  const compItem = document.querySelector("button.computer-choice");
+  compItem.style.display = "flex";
+  let compItemImg = document.createElement("img");
+  compItemImg.src = `images/${computerChoice}.png`;
+  compItem.appendChild(compItemImg);
+
   switch (humanChoice) {
     case "rock":
       if (computerChoice === "rock") return -1;
