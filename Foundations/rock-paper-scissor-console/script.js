@@ -3,9 +3,11 @@ let humanScore = 0;
 let computerScore = 0;
 let gameOver = false;
 
+const choiceClickCallback = (e) => playRound(e)
+
 function initDom() {
   const choices = document.querySelector(".choices-container");
-  choices.addEventListener("click", (e) => playRound(e));
+  choices.addEventListener("click", choiceClickCallback);
 
   const nextRoundBtn = document.querySelector(".round-res button");
   nextRoundBtn.addEventListener("click", () => {
@@ -16,7 +18,7 @@ function initDom() {
 
 function makeButtonsUnclickable() {
   const buttons = document.querySelector(".choices-container");
-  buttons.removeEventListener("click", (e) => playRound(e));
+  buttons.removeEventListener("click", choiceClickCallback);
 }
 
 function getComputerChoice() {
@@ -116,7 +118,7 @@ function initChoices() {
   vs.style.display = "none";
 
   const buttons = document.querySelector(".choices-container");
-  buttons.addEventListener("click", (e) => playRound(e));
+  buttons.addEventListener("click", choiceClickCallback);
 }
 
 function playRound(e) {
