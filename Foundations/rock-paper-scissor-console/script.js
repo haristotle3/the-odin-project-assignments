@@ -1,8 +1,16 @@
-const INVALID_CHOICE = 400;
+const ERROR_VALUE = 400;
+let humanScore = 0;
+let computerScore = 0;
+let gameOver = false;
 
 function initDom() {
   const choices = document.querySelector(".choices-container");
   choices.addEventListener("click", (e) => playRound(e));
+
+  const nextRoundBtn = document.querySelector(".round-res button");
+  nextRoundBtn.addEventListener("click", () => {
+    initChoices();
+  });
   return;
 }
 
@@ -13,10 +21,64 @@ function getComputerChoice() {
   return choices[choice];
 }
 
+function updateResults(roundResult) {
+  if (roundResult == ERROR_VALUE) alert("ERROR: Round was never played.");
+
+  if (roundResult === 1) {
+    humanScore++;
+  } else if (roundResult == -1) {
+    computerScore++;
+  }
+
+  if (humanScore === 5 || computerScore === 5) {
+    gameOver = true;
+  }
+}
+
+function displayResults(roundResult) {
+  const humanRoundResult = document.querySelector("h3.csc-human-score");
+  const compRoundResult = document.querySelector("h3.csc-comp-score");
+
+  const humanTotal = document.querySelector("h3.tsc-human-score");
+  const compTotal = document.querySelector("h3.tsc-comp-score");
+
+  const roundResDiv = document.querySelector(".round-res");
+
+  if (gameOver) {
+    const nextRoundBtn = document.querySelector(".round-res button");
+    nextRoundBtn.style.display = "none";
+  }
+  if (roundResult === 1) {
+    humanRoundResult.textContent = "1";
+    roundResDiv.style.visibility = "visible";
+    roundResDiv.style.backgroundColor = "green";
+    const roundResDivH1 = document.querySelector(".round-res h1");
+    roundResDivH1.textContent = "You win this round!";
+  } else if (roundResult == -1) {
+    compRoundResult.textContent = "1";
+    roundResDiv.style.visibility = "visible";
+    roundResDiv.style.backgroundColor = "red";
+    const roundResDivH1 = document.querySelector(".round-res h1");
+    roundResDivH1.textContent = "You lose this round!";
+  } else if (roundResult === 0) {
+    roundResDiv.style.visibility = "visible";
+    roundResDiv.style.backgroundColor = "blue";
+    const roundResDivH1 = document.querySelector(".round-res h1");
+    roundResDivH1.textContent = "Round tied!";
+  }
+
+  humanTotal.textContent = String(humanScore);
+  compTotal.textContent = String(computerScore);
+
+  return;
+}
+
+function initChoices() {}
+
 function playRound(e) {
   const humanChoice = e.target.className;
   const computerChoice = getComputerChoice();
-  console.log(computerChoice);
+
   let choices = ["rock", "paper", "scissor"];
   choices = choices.filter((item) => item !== humanChoice);
 
@@ -29,74 +91,53 @@ function playRound(e) {
     }
   }
 
+  // Display computer's choice to the user.
   const compItem = document.querySelector("button.computer-choice");
   compItem.style.display = "flex";
   let compItemImg = document.createElement("img");
   compItemImg.src = `images/${computerChoice}.png`;
   compItem.appendChild(compItemImg);
 
+  // Display 'VS'
+  const vs = document.querySelector(".choices-container h1");
+  vs.style.display = "flex";
+
+  // Now play the round.
+  let roundResult = ERROR_VALUE;
   switch (humanChoice) {
     case "rock":
-      if (computerChoice === "rock") return -1;
-      else if (computerChoice === "paper") {
-        return 0;
+      if (computerChoice === "rock") {
+        roundResult = 0;
+      } else if (computerChoice === "paper") {
+        roundResult = -1;
       } else if (computerChoice === "scissor") {
-        return 1;
+        roundResult = 1;
       }
       break;
 
     case "paper":
       if (computerChoice === "rock") {
-        return 1;
+        roundResult = 1;
       } else if (computerChoice === "paper") {
-        return -1;
+        roundResult = 0;
       } else if (computerChoice === "scissor") {
-        return 0;
+        roundResult = -1;
       }
       break;
 
     case "scissor":
       if (computerChoice === "rock") {
-        return 0;
+        roundResult = -1;
       } else if (computerChoice === "paper") {
-        return 1;
+        roundResult = 1;
       } else if (computerChoice === "scissor") {
-        return -1;
+        roundResult = 0;
       }
       break;
-
-    default:
-      alert("Please enter a valid choice.");
-      return INVALID_CHOICE;
-  }
-}
-
-function playGame(numRounds) {
-  let humanScore = 0,
-    computerScore = 0;
-
-  for (let i = 0; i < numRounds; i++) {
-    let humanChoice = getHumanChoice();
-    let computerChoice = getComputerChoice();
-
-    console.log(
-      ("Human : " + humanChoice).padEnd(32),
-      "Computer : " + computerChoice
-    );
-    let roundResult = playRound(humanChoice, computerChoice);
-
-    if (roundResult == 1) humanScore++;
-    else if (roundResult == 0) computerScore++;
-    else if (roundResult == INVALID_CHOICE) i--;
   }
 
-  console.log("Final scores:");
-  console.log("Human : ", humanScore);
-  console.log("Computer : ", computerScore);
-
-  if (humanScore == computerScore) console.log("Match Tied!");
-  else if (humanScore > computerScore) console.log("Human Wins!");
-  else if (humanScore < computerScore) console.log("Computer Wins!");
+  updateResults(roundResult);
+  displayResults(roundResult);
 }
 
 initDom();

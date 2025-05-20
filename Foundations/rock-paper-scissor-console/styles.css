@@ -81,7 +81,7 @@ body {
   width: 100%;
 }
 
-.final-res {
+.final-res, .round-res {
   visibility: hidden;
   margin-top: auto;
   text-align: center;
@@ -92,6 +92,26 @@ body {
     background-color: rgb(57, 255, 110); */
 }
 
+.round-res button {
+  margin: 0;
+  margin-bottom: 6px;
+
+  padding: 6px;
+  font-size: 20px;
+  font-family: "Freckle Face", sans-serif;
+  text-shadow: 2px 2px black;
+  color: white;
+
+  background: rgb(71, 255, 47);
+  border: 2px solid white;
+  border-radius: 20%;
+}
+
 .computer-choice {
   display: none;
+}
+
+.choices-container h1 {
+  display: none;
+  font-size: 100px;
 }
