@@ -3,7 +3,7 @@ let humanScore = 0;
 let computerScore = 0;
 let gameOver = false;
 
-const choiceClickCallback = (e) => playRound(e)
+const choiceClickCallback = (e) => playRound(e);
 
 function initDom() {
   const choices = document.querySelector(".choices-container");
@@ -119,6 +119,15 @@ function initChoices() {
 
   const buttons = document.querySelector(".choices-container");
   buttons.addEventListener("click", choiceClickCallback);
+
+  const humanRoundResult = document.querySelector("h3.csc-human-score");
+  const compRoundResult = document.querySelector("h3.csc-comp-score");
+
+  humanRoundResult.textContent = "0";
+  compRoundResult.textContent = "0";
+
+  const roundResDiv = document.querySelector(".round-res");
+  roundResDiv.style.visibility = "hidden";
 }
 
 function playRound(e) {
