@@ -18,8 +18,29 @@ button {
 }
 
 .container {
+  box-sizing: border-box;
   height: 960px;
   width: 960px;
 
-  background-color: #FFFFFF;
+  margin: 0;
+  padding: 0;
+
+  display: flex;
+  flex-wrap: wrap;
+  align-content: flex-start;
+  gap: 0px;
+
+  background-color: #ffffff;
+}
+
+.box {
+  box-sizing: border-box;
+  height: 120px;
+  width: 120px;
+
+  background-color: aquamarine;
+  border: 2px solid black;
+
+  margin: 0;
+  padding: 0;
 }
