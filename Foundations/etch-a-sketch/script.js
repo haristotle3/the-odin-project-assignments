@@ -7,14 +7,23 @@ function initDom() {
     console.log(targetedDiv);
     targetedDiv.style.backgroundColor = "black";
   });
+
+  const resizeButton = document.querySelector("button");
+  resizeButton.addEventListener("click", () => {
+    let gridSize = 101;
+    while (gridSize >= 100 || gridSize <= 0 || isNaN(gridSize)) {
+      gridSize = parseInt(
+        prompt("Please enter the grid size (more than 0 and less than 100)")
+      );
+    }
+
+    initGrid(gridSize);
+  });
+
+  return;
 }
 
 function initGrid(gridSize = 16) {
-  if (gridSize > 100) {
-    alert("Please enter grid size less than 100.");
-    return;
-  }
-
   const container = document.querySelector(".container");
 
   // Remove all existing divs.
