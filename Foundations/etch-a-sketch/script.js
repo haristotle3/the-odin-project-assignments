@@ -4,8 +4,8 @@ function initDom() {
   const container = document.querySelector(".container");
   container.addEventListener("mouseover", (e) => {
     const targetedDiv = e.target;
-    console.log(targetedDiv);
-    targetedDiv.style.backgroundColor = "black";
+    let color = getRandomColor(); // Choose the color for interaction
+    targetedDiv.style.backgroundColor = color;
   });
 
   const resizeButton = document.querySelector("button");
@@ -38,11 +38,24 @@ function initGrid(gridSize = 16) {
       const box = document.createElement("div");
       box.style.boxSizing = "border-box";
       box.style.width = box.style.height = divSize + "px";
-      box.style.border = "1px solid rgb(192, 192, 192)";
+      box.style.border = "1px solid rgba(0,0,0, 0.25)" ;
       box.style.margin = box.style.padding = 0;
       container.appendChild(box);
     }
   }
+}
+
+function getRandomColor() {
+  let randomNumber1 = String(Math.floor(Math.random() * 256));
+  randomNumber1 = randomNumber1.padStart(3, 0);
+
+  let randomNumber2 = String(Math.floor(Math.random() * 256));
+  randomNumber2 = randomNumber2.padStart(3, 0);
+
+  let randomNumber3 = String(Math.floor(Math.random() * 256));
+  randomNumber3 = randomNumber3.padStart(3, 0);
+
+  return `rgb(${randomNumber1}, ${randomNumber2}, ${randomNumber3})`;
 }
 
 initGrid();
