@@ -4,8 +4,14 @@ function initDom() {
   const container = document.querySelector(".container");
   container.addEventListener("mouseover", (e) => {
     const targetedDiv = e.target;
-    let color = getRandomColor(); // Choose the color for interaction
-    targetedDiv.style.backgroundColor = color;
+    // Handle opacity
+    if (targetedDiv.style.backgroundColor === "") {
+      let color = "black"; // Choose the color for interaction
+      targetedDiv.style.backgroundColor = color;
+      targetedDiv.style.opacity = 0.2;
+    } else {
+        targetedDiv.style.opacity = String(Number(targetedDiv.style.opacity) + 0.2);
+    }
   });
 
   const resizeButton = document.querySelector("button");
@@ -38,7 +44,7 @@ function initGrid(gridSize = 16) {
       const box = document.createElement("div");
       box.style.boxSizing = "border-box";
       box.style.width = box.style.height = divSize + "px";
-      box.style.border = "1px solid rgba(0,0,0, 0.25)" ;
+      box.style.border = "1px solid rgba(0,0,0, 0.25)";
       box.style.margin = box.style.padding = 0;
       container.appendChild(box);
     }
