@@ -1,4 +1,5 @@
 const SCREEN = document.querySelector(".screen");
+const SCREEN_LIMIT = 12;
 const OUT_OF_BOUNDS = "OUT_OF_BOUNDS";
 
 let input = "";
@@ -21,7 +22,7 @@ function initDom() {
   const numpad = document.querySelector(".buttons-container .numpad");
   // handling numpad clicks.
   numpad.addEventListener("click", (e) => {
-    if (input.length >= 12 || SCREEN.textContent === "ERROR") return;
+    if (input.length >= SCREEN_LIMIT || SCREEN.textContent === "ERROR") return;
 
     let clickedBtn = e.target.id;
     if (clickedBtn === "point" && pointClickable) {
@@ -60,6 +61,7 @@ function initDom() {
         if (!pointClickable) toggleDecimalPoint();
 
         operand1 = operand2 = OUT_OF_BOUNDS;
+        operator = "";
         SCREEN.textContent = input;
         return;
     }
@@ -84,33 +86,57 @@ function initDom() {
         break;
       case "division":
         operator = "/";
+        console.log("I was clicked");
         break;
       case "equal":
         input = "";
         if (operand1 === OUT_OF_BOUNDS) return;
         if (operand2 === OUT_OF_BOUNDS) SCREEN.textContent = String(operand1);
-        else SCREEN.textContent = String(operate(operand1, operand2, operator));
+        else {
+          SCREEN.textContent = operate(operand1, operand2, operator);
+        }
+        operand1 = operand2 = OUT_OF_BOUNDS;
+        operator = "";
         break;
     }
   });
 }
 
 function operate(op1, op2, operation) {
+  let result = 0;
+  console.log(op1, op2, operator);
+
   switch (operation) {
     case "+":
-      return op1 + op2;
+      result = op1 + op2;
+      break;
     case "-":
-      return op1 - op2;
+      result = op1 - op2;
+      break;
     case "*":
-      return op1 * op2;
+      result = op1 * op2;
+      break;
     case "/":
       if (op2 === 0) {
         SCREEN.textContent = "ERROR";
       }
-      return op1 / op2;
+      result = op1 / op2;
+      break;
+  }
+
+  console.log(result);
+  if (result == Math.floor(result)) {
+    const numDigits = Math.ceil(Math.log10(result)) + 1;
+    if (numDigits >= SCREEN_LIMIT) return "RANGE ERROR";
+
+    return String(result);
+  } else {
+    const preDecimalPoint = Math.floor(result);
+    const numDigits = Math.ceil(Math.log10(preDecimalPoint));
+    const decimalDigits = SCREEN_LIMIT - 1 - numDigits;
+
+    return String(result.toFixed(decimalDigits));
   }
 }
-
-operate(1, 1, "+");
 
 initDom();
