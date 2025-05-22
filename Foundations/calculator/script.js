@@ -3,17 +3,29 @@ const SCREEN = document.querySelector(".screen");
 let operand = "";
 let operator = "";
 
+const decimalPoint = document.querySelector("#point");
+let pointClickable = true;
+
+function toggleDecimalPoint() {
+  pointClickable = !pointClickable;
+
+  if (!pointClickable)
+    decimalPoint.style.backgroundColor = "rgba(0, 0, 0, 0.75)";
+  else decimalPoint.style.backgroundColor = "rgba(0, 0, 0, 0.5)";
+}
+
 function initDom() {
   const numpad = document.querySelector(".buttons-container .numpad");
   // handling numpad clicks.
   let pointClickable = true;
   numpad.addEventListener("click", (e) => {
+    if (operand.length >= 12) return;
+
     let clickedBtn = e.target.id;
 
     if (clickedBtn === "point" && pointClickable) {
       clickedBtn = ".";
-      pointClickable = false;
-      e.target.style.backgroundColor = "rgba(0, 0, 0, 0.75)";
+      toggleDecimalPoint();
       operand += clickedBtn;
     } else if (clickedBtn !== "point") {
       operand += clickedBtn;
@@ -25,7 +37,6 @@ function initDom() {
   // handling operators.
   operatorPad.addEventListener("click", (e) => {
     let clickedBtn = e.target.id;
-
     switch (clickedBtn) {
       case "addition":
         operator = "+";
@@ -40,7 +51,16 @@ function initDom() {
         operator = "/";
         break;
       case "backspace":
-        operand.split().splice(-1, 1).join();
+        operand = operand.split("");
+        if (operand.pop() === ".") {
+          toggleDecimalPoint();
+        }
+        operand = operand.join("");
+        SCREEN.textContent = operand;
+        break;
+      case "ac":
+        operand = "";
+        if (!pointClickable) toggleDecimalPoint();
         SCREEN.textContent = operand;
         break;
     }

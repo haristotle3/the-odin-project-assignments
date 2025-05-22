@@ -1,42 +1,42 @@
 * {
-    font-family: zain, sans-serif;
+  font-family: zain, sans-serif;
 }
 
 html {
-    background-color: rgb(255, 255, 255);
+  background-color: rgb(255, 255, 255);
 }
 
 body {
-    width: 900px;
-    margin: 0 auto;
+  width: 900px;
+  margin: 0 auto;
 }
 
 h1 {
-    text-align: center;
-    font-size: 48px;
+  text-align: center;
+  font-size: 48px;
 }
 
 ul {
-    list-style-type: none;
-    display: flex;
+  list-style-type: none;
+  display: flex;
 }
 
 li {
-    margin: 2px auto;
-    font-size: 36px;
+  margin: 2px auto;
+  font-size: 36px;
 
-    text-align: center;
+  text-align: center;
 
-    border: 5px solid rgb(184, 120, 0);
-    background-color: orange;
-    border-radius: 10px;
-    
-    width: 200px;
+  border: 5px solid rgb(184, 120, 0);
+  background-color: orange;
+  border-radius: 10px;
+
+  width: 200px;
 }
 
 a {
-    display: block;
-    text-decoration: none;
-    color: white;
-    width: 200px;
+  display: block;
+  text-decoration: none;
+  color: white;
+  width: 200px;
 }
