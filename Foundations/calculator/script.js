@@ -132,9 +132,58 @@ function initDom() {
 
         break;
     }
+  });
+  // adding keyboard support.
+  document.addEventListener("keydown", (e) => {
+    let clickEvent = new MouseEvent("click", { bubbles: true });
+    let crspndBtn;
+    console.log(e.key);
 
-
-    // adding keyboard support.
+    switch (e.key) {
+      case "0":
+      case "1":
+      case "2":
+      case "3":
+      case "4":
+      case "5":
+      case "6":
+      case "7":
+      case "8":
+      case "9":
+        crspndBtn = document.getElementById(e.key);
+        crspndBtn.dispatchEvent(clickEvent);
+        console.log(crspndBtn);
+        break;
+      case ".":
+        crspndBtn = document.getElementById("point");
+        crspndBtn.dispatchEvent(clickEvent);
+        break;
+      case "+":
+        crspndBtn = document.getElementById("addition");
+        crspndBtn.dispatchEvent(clickEvent);
+        break;
+      case "-":
+        crspndBtn = document.getElementById("subtraction");
+        crspndBtn.dispatchEvent(clickEvent);
+        break;
+      case "/":
+        crspndBtn = document.getElementById("division");
+        crspndBtn.dispatchEvent(clickEvent);
+        break;
+      case "*":
+        crspndBtn = document.getElementById("multiplication");
+        crspndBtn.dispatchEvent(clickEvent);
+        break;
+      case "Enter":
+      case "=":
+        crspndBtn = document.getElementById("equal");
+        crspndBtn.dispatchEvent(clickEvent);
+        break;
+      case "Backspace":
+        crspndBtn = document.getElementById("backspace");
+        crspndBtn.dispatchEvent(clickEvent);
+        break;
+    }
   });
 }
 
@@ -175,5 +224,4 @@ function operate(op1, op2, operation) {
     return String(result.toFixed(decimalDigits));
   }
 }
-
 initDom();
