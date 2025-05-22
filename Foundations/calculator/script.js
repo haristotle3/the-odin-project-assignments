@@ -1,7 +1,10 @@
 const SCREEN = document.querySelector(".screen");
 
-let operand = "";
+let input = "";
 let operator = "";
+
+let operand1 = 0;
+let operand2 = 0;
 
 const decimalPoint = document.querySelector("#point");
 let pointClickable = true;
@@ -17,19 +20,19 @@ function initDom() {
   const numpad = document.querySelector(".buttons-container .numpad");
   // handling numpad clicks.
   numpad.addEventListener("click", (e) => {
-    if (operand.length >= 12) return;
+    if (input.length >= 12 || SCREEN.textContent === "ERROR") return;
 
     let clickedBtn = e.target.id;
     if (clickedBtn === "point" && pointClickable) {
       clickedBtn = ".";
       toggleDecimalPoint();
-      operand += clickedBtn;
+      input += clickedBtn;
     } else if (clickedBtn !== "point") {
-      operand += clickedBtn;
+      input += clickedBtn;
     } else if (!pointClickable) {
       return;
     }
-    SCREEN.textContent = operand;
+    SCREEN.textContent = input;
   });
 
   const operatorPad = document.querySelector(".operators");
@@ -50,20 +53,45 @@ function initDom() {
         operator = "/";
         break;
       case "backspace":
-        operand = operand.split("");
-        if (operand.pop() === ".") {
-          toggleDecimalPoint();
+        if (SCREEN.textContent === "ERROR") input = "";
+        else {
+          input = input.split("");
+          if (input.pop() === ".") {
+            toggleDecimalPoint();
+          }
+          input = input.join("");
         }
-        operand = operand.join("");
-        SCREEN.textContent = operand;
+        SCREEN.textContent = input;
         break;
       case "ac":
-        operand = "";
+        input = "";
         if (!pointClickable) toggleDecimalPoint();
-        SCREEN.textContent = operand;
+        SCREEN.textContent = input;
+        break;
+      case "equal":
+        input = "";
+        SCREEN.textContent = ;
         break;
     }
   });
 }
+
+function operate(op1, op2, operation) {
+  switch (operation) {
+    case "+":
+      return op1 + op2;
+    case "-":
+      return op1 - op2;
+    case "*":
+      return op1 * op2;
+    case "/":
+      if (op2 === 0) {
+        SCREEN.textContent = "ERROR";
+      }
+      return op1 / op2;
+  }
+}
+
+operate(1, 0, "/");
 
 initDom();
