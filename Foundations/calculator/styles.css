@@ -47,15 +47,16 @@ body {
 }
 
 @font-face {
-  font-family: 'digital-clock-font';
-  src: url('./digital-7.ttf');
+  font-family: "digital-clock-font";
+  src: url("./digital-7.ttf");
 }
 
 .screen {
   display: flex;
-  align-items: center;
   justify-content: flex-end;
-  flex-grow: 0.75;
+  align-items: baseline;
+  flex: 0 0 15%;
+  max-height: 108px;
 
   box-sizing: border-box;
   background-color: rgb(202, 253, 255);
@@ -64,10 +65,9 @@ body {
 
   text-align: right;
   margin: 0;
-  padding: 0;
 
-  font-size: 120px;
-  font-family: 'digital-clock-font', sans-serif;
+  font-size: 90px;
+  font-family: "digital-clock-font", sans-serif;
   line-height: 1;
 }
 
