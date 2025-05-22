@@ -57,11 +57,12 @@ function initDom() {
         return;
 
       case "ac":
-        input = "";
         if (!pointClickable) toggleDecimalPoint();
 
+        input = "";
         operand1 = operand2 = OUT_OF_BOUNDS;
         operator = "";
+
         SCREEN.textContent = input;
         return;
     }
@@ -71,30 +72,57 @@ function initDom() {
       input = "";
       if (!pointClickable) toggleDecimalPoint();
     } else if (operand2 === OUT_OF_BOUNDS) {
+      if (input !== "");
       operand2 = Number(input);
     }
 
     switch (clickedBtn) {
       case "addition":
         operator = "+";
+        if (operand2 !== OUT_OF_BOUNDS) {
+          SCREEN.textContent = operate(operand1, operand2, "+");
+          operand1 = Number(SCREEN.textContent);
+          operand2 = OUT_OF_BOUNDS;
+          input = "";
+        }
         break;
       case "subtraction":
         operator = "-";
+        if (operand2 !== OUT_OF_BOUNDS) {
+          SCREEN.textContent = operate(operand1, operand2, "-");
+          operand1 = Number(SCREEN.textContent);
+          operand2 = OUT_OF_BOUNDS;
+          input = "";
+        }
+        SCREEN.textContent = String(operand1);
         break;
       case "multiplication":
         operator = "*";
+        if (operand2 !== OUT_OF_BOUNDS) {
+          SCREEN.textContent = operate(operand1, operand2, "*");
+          operand1 = Number(SCREEN.textContent);
+          operand2 = OUT_OF_BOUNDS;
+          input = "";
+        }
+        SCREEN.textContent = String(operand1);
         break;
       case "division":
         operator = "/";
-        console.log("I was clicked");
+        if (operand2 !== OUT_OF_BOUNDS) {
+          SCREEN.textContent = operate(operand1, operand2, "/");
+          operand1 = Number(SCREEN.textContent);
+          operand2 = OUT_OF_BOUNDS;
+          input = "";
+        }
+        SCREEN.textContent = String(operand1);
         break;
       case "equal":
-        input = "";
         if (operand1 === OUT_OF_BOUNDS) return;
         if (operand2 === OUT_OF_BOUNDS) SCREEN.textContent = String(operand1);
         else {
           SCREEN.textContent = operate(operand1, operand2, operator);
         }
+        input = "";
         operand1 = operand2 = OUT_OF_BOUNDS;
         operator = "";
         break;
@@ -131,8 +159,9 @@ function operate(op1, op2, operation) {
 
     return String(result);
   } else {
-    const preDecimalPoint = Math.floor(result);
-    const numDigits = Math.ceil(Math.log10(preDecimalPoint));
+    console.log(result);
+    const preDecimalPoint = Math.ceil(result);
+    const numDigits = Math.ceil(Math.log10(preDecimalPoint)) + 1;
     const decimalDigits = SCREEN_LIMIT - 1 - numDigits;
 
     return String(result.toFixed(decimalDigits));
