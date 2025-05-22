@@ -1,10 +1,11 @@
 const SCREEN = document.querySelector(".screen");
+const OUT_OF_BOUNDS = "OUT_OF_BOUNDS";
 
 let input = "";
-let operator = "";
 
-let operand1 = 0;
-let operand2 = 0;
+let operator = "";
+let operand1 = OUT_OF_BOUNDS;
+let operand2 = OUT_OF_BOUNDS;
 
 const decimalPoint = document.querySelector("#point");
 let pointClickable = true;
@@ -32,6 +33,7 @@ function initDom() {
     } else if (!pointClickable) {
       return;
     }
+
     SCREEN.textContent = input;
   });
 
@@ -39,6 +41,27 @@ function initDom() {
   // handling operators.
   operatorPad.addEventListener("click", (e) => {
     let clickedBtn = e.target.id;
+
+    switch (clickedBtn) {
+      case "backspace":
+        if (SCREEN.textContent === "ERROR") input = "";
+        else {
+          input = input.split("");
+          if (input.pop() === ".") {
+            toggleDecimalPoint();
+          }
+          input = input.join("");
+        }
+        SCREEN.textContent = input;
+        return;
+
+      case "ac":
+        input = "";
+        if (!pointClickable) toggleDecimalPoint();
+        SCREEN.textContent = input;
+        return;
+    }
+
     switch (clickedBtn) {
       case "addition":
         operator = "+";
@@ -52,25 +75,11 @@ function initDom() {
       case "division":
         operator = "/";
         break;
-      case "backspace":
-        if (SCREEN.textContent === "ERROR") input = "";
-        else {
-          input = input.split("");
-          if (input.pop() === ".") {
-            toggleDecimalPoint();
-          }
-          input = input.join("");
-        }
-        SCREEN.textContent = input;
-        break;
-      case "ac":
-        input = "";
-        if (!pointClickable) toggleDecimalPoint();
-        SCREEN.textContent = input;
-        break;
       case "equal":
         input = "";
-        SCREEN.textContent = ;
+        if (operand1 === OUT_OF_BOUNDS) return;
+        if (operand2 === OUT_OF_BOUNDS) SCREEN.textContent = String(operand1);
+        else SCREEN.textContent = String(operate(operand1, operand2, operator));
         break;
     }
   });
@@ -91,7 +100,5 @@ function operate(op1, op2, operation) {
       return op1 / op2;
   }
 }
-
-operate(1, 0, "/");
 
 initDom();
