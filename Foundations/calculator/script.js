@@ -132,6 +132,9 @@ function initDom() {
 
         break;
     }
+
+
+    // adding keyboard support.
   });
 }
 
