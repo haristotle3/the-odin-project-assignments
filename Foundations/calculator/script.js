@@ -58,8 +58,18 @@ function initDom() {
       case "ac":
         input = "";
         if (!pointClickable) toggleDecimalPoint();
+
+        operand1 = operand2 = OUT_OF_BOUNDS;
         SCREEN.textContent = input;
         return;
+    }
+
+    if (operand1 === OUT_OF_BOUNDS) {
+      operand1 = Number(input);
+      input = "";
+      if (!pointClickable) toggleDecimalPoint();
+    } else if (operand2 === OUT_OF_BOUNDS) {
+      operand2 = Number(input);
     }
 
     switch (clickedBtn) {
@@ -100,5 +110,7 @@ function operate(op1, op2, operation) {
       return op1 / op2;
   }
 }
+
+operate(1, 1, "+");
 
 initDom();
