@@ -8,7 +8,6 @@ let pointClickable = true;
 
 function toggleDecimalPoint() {
   pointClickable = !pointClickable;
-
   if (!pointClickable)
     decimalPoint.style.backgroundColor = "rgba(0, 0, 0, 0.75)";
   else decimalPoint.style.backgroundColor = "rgba(0, 0, 0, 0.5)";
@@ -17,18 +16,18 @@ function toggleDecimalPoint() {
 function initDom() {
   const numpad = document.querySelector(".buttons-container .numpad");
   // handling numpad clicks.
-  let pointClickable = true;
   numpad.addEventListener("click", (e) => {
     if (operand.length >= 12) return;
 
     let clickedBtn = e.target.id;
-
     if (clickedBtn === "point" && pointClickable) {
       clickedBtn = ".";
       toggleDecimalPoint();
       operand += clickedBtn;
     } else if (clickedBtn !== "point") {
       operand += clickedBtn;
+    } else if (!pointClickable) {
+      return;
     }
     SCREEN.textContent = operand;
   });
@@ -64,9 +63,6 @@ function initDom() {
         SCREEN.textContent = operand;
         break;
     }
-
-    console.log(operand);
-    console.log(operator);
   });
 }
 
