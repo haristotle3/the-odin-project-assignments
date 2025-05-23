@@ -204,13 +204,16 @@ function operate(op1, op2, operation) {
     case "/":
       if (op2 === 0) {
         SCREEN.textContent = "ERROR";
-      }
-      result = op1 / op2;
+        input = "";
+        operand1 = operand2 = OUT_OF_BOUNDS;
+        operator = "";
+        return;
+      } else result = op1 / op2;
       break;
   }
 
   console.log(`just printing the results bro`, result);
-  if (result == Math.floor(result)) {
+  if (result === Math.floor(result)) {
     const numDigits = Math.ceil(Math.log10(result)) + 1;
     if (numDigits >= SCREEN_LIMIT) return "RANGE ERROR";
     return String(result);
