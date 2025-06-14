@@ -59,8 +59,6 @@ dialog > form > input {
   border: 4px solid rgba(23, 89, 137, 0.25);
 }
 
-
-
 nav,
 footer {
   display: flex;
@@ -87,8 +85,8 @@ main .card-container {
   gap: 4px;
 
   padding: 36px;
-  grid-template-columns: repeat(auto-fill, minmax(210px, 1fr));
-  grid-template-rows: repeat(auto-fill, minmax(210px, 1fr));
+  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+  grid-template-rows: repeat(auto-fill, minmax(240px, 1fr));
 }
 
 main .card {
@@ -101,7 +99,7 @@ main .card {
 
   display: grid;
   grid-template-columns: 1fr 1fr;
-  grid-template-rows: 3fr 2fr 1fr;
+  grid-template-rows: 2fr 2fr 2fr 1fr 1fr;
   padding: 24px;
   gap: 4px;
 
@@ -121,6 +119,14 @@ main .card > * {
 main .card > *:first-child,
 main .card > *:nth-child(2) {
   border-top: 1px solid black;
+}
+
+main .card button {
+  color: white;
+  border-radius: 16px;
+  font-weight: 900;
+  background-color: rgba(255, 51, 33, 0.75);
+  border: 4px solid rgba(75, 14, 6, 0.25);
 }
 
 main .button-container {

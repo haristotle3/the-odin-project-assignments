@@ -2,6 +2,7 @@ const myLibrary = [];
 const createBookButton = document.querySelector("#create-book");
 const dialog = document.querySelector("dialog");
 const form = document.querySelector("form");
+const deleteEventHandler = document.querySelector(".card-container");
 
 function Book(title, author, pages, isRead) {
   this.title = title;
@@ -35,8 +36,6 @@ dialog.addEventListener("close", () => {
   dialog.close();
 });
 
-dialog.showModal();
-
 form.addEventListener("submit", (e) => {
   const title = document.querySelector("form #title");
   const author = document.querySelector("form #author");
@@ -44,12 +43,25 @@ form.addEventListener("submit", (e) => {
   const isRead = document.querySelector("form #isRead");
 
   addBookToLibrary(title.value, author.value, pages.value, isRead.value);
+  displayLibrary();
+});
+
+deleteEventHandler.addEventListener("click", (e) => {
+  let removalIndex = 0;
+  for (let book of myLibrary) {
+    if (book.id == e.target.dataset.id) {
+      removalIndex = myLibrary.indexOf(book);
+      break;
+    }
+  }
+
+  myLibrary.splice(removalIndex, 1);
+  displayLibrary();
 });
 
 function addBookToLibrary(title, author, pages, isRead) {
   let book = new Book(title, author, pages, isRead);
   myLibrary.push(book);
-  displayLibrary();
   return;
 }
 
@@ -73,6 +85,21 @@ function createNode(book) {
     node.appendChild(propName);
     node.appendChild(propValue);
   }
+
+  const label = document.createElement("label");
+  label.textContent = "Read";
+
+  const readButton = document.createElement("input");
+  readButton.type = "checkbox";
+  readButton.style.justifySelf = "start";
+
+  const deleteButton = document.createElement("button");
+  deleteButton.textContent = "Delete";
+
+  deleteButton.dataset.id = book.id;
+  node.append(label);
+  node.appendChild(readButton);
+  node.appendChild(deleteButton);
 
   return node;
 }
