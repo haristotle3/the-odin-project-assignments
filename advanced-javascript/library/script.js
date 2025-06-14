@@ -1,10 +1,12 @@
+const myLibrary = [];
+
 function Book(title, author, pages, isRead) {
   this.title = title;
   this.author = author;
   this.pages = pages;
   this.isRead = isRead;
   this.id = crypto.randomUUID();
-  
+
   this.info = function () {
     let info = "";
     info += title + " ";
@@ -15,4 +17,10 @@ function Book(title, author, pages, isRead) {
 
     return info;
   };
+}
+
+function addBookToLibrary(title, author, pages, isRead) {
+  let book = new Book(title, author, pages, isRead);
+  myLibrary.push(book);
+  return;
 }
