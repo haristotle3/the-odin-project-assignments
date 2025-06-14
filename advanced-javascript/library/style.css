@@ -37,8 +37,8 @@ main .card-container {
   gap: 4px;
 
   padding: 36px;
-  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
-  grid-template-rows: repeat(auto-fill, minmax(250px, 1fr));
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  grid-template-rows: repeat(auto-fill, minmax(200px, 1fr));
 }
 
 main .card {
@@ -47,6 +47,17 @@ main .card {
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  box-sizing: border-box;
+
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: repeat(3, 27px);
+  padding: 24px;
+  gap: 2px;
+
+  justify-content: center;
+  align-content: center;
+  
 
   height: 100%;
   border: 2px solid rgba(0, 0, 0, 0.25);
