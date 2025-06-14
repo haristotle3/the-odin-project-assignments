@@ -51,7 +51,7 @@ main .card {
 
   display: grid;
   grid-template-columns: 1fr 1fr;
-  grid-template-rows: repeat(3, 27px);
+  grid-template-rows: repeat(auto-fit, 27px);
   padding: 24px;
   gap: 2px;
 
