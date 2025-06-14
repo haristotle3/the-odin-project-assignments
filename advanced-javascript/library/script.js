@@ -7,11 +7,6 @@ function Book(title, author, pages, isRead) {
   this.isRead = isRead;
   this.id = crypto.randomUUID();
 
-  this.toggleRead = function () {
-    this.isRead = !this.isRead;
-    return;
-  };
-
   this.info = function () {
     let info = "";
     info += title + " ";
@@ -23,6 +18,11 @@ function Book(title, author, pages, isRead) {
     return info;
   };
 }
+
+Book.prototype.toggleRead = function () {
+  this.isRead = !this.isRead;
+  return;
+};
 
 function addBookToLibrary(title, author, pages, isRead) {
   let book = new Book(title, author, pages, isRead);
