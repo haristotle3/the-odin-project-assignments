@@ -3,7 +3,8 @@ function Book(title, author, pages, isRead) {
   this.author = author;
   this.pages = pages;
   this.isRead = isRead;
-
+  this.id = crypto.randomUUID();
+  
   this.info = function () {
     let info = "";
     info += title + " ";
@@ -15,4 +16,3 @@ function Book(title, author, pages, isRead) {
     return info;
   };
 }
-
