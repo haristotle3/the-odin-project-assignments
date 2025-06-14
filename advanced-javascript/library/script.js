@@ -30,16 +30,6 @@ function addBookToLibrary(title, author, pages, isRead) {
   return;
 }
 
-addBookToLibrary("A Mind For Numbers", "Barbara Oakley", 450, true);
-addBookToLibrary("Clean Code", "Robert C. Martin", 464, true);
-addBookToLibrary("Introduction to Algorithms", "Thomas H. Cormen", 1312, false);
-addBookToLibrary("Design Patterns", "Erich Gamma", 395, true);
-addBookToLibrary("The Pragmatic Programmer", "Andrew Hunt", 352, false);
-addBookToLibrary("You Don't Know JS", "Kyle Simpson", 278, true);
-addBookToLibrary("Deep Work", "Cal Newport", 304, true);
-addBookToLibrary("Zero to One", "Peter Thiel", 224, false);
-addBookToLibrary("Atomic Habits", "James Clear", 320, true);
-
 function capitalizeFirstLetter(string) {
   return string.charAt(0).toUpperCase() + string.slice(1);
 }
@@ -64,7 +54,19 @@ function createNode(book) {
   return node;
 }
 
+function clearCardContainer() {
+  const cardContainer = document.querySelector(".card-container");
+  let child = cardContainer.lastElementChild;
+  while (child) {
+    cardContainer.removeChild(child);
+    child = cardContainer.lastElementChild;
+  }
+
+  return;
+}
+
 function displayLibrary() {
+  clearCardContainer();
   const cardContainer = document.querySelector(".card-container");
 
   for (let book of myLibrary) {
@@ -73,5 +75,15 @@ function displayLibrary() {
   }
   return;
 }
+
+addBookToLibrary("A Mind For Numbers", "Barbara Oakley", 450, true);
+addBookToLibrary("Clean Code", "Robert C. Martin", 464, true);
+addBookToLibrary("Introduction to Algorithms", "Thomas H. Cormen", 1312, false);
+addBookToLibrary("Design Patterns", "Erich Gamma", 395, true);
+addBookToLibrary("The Pragmatic Programmer", "Andrew Hunt", 352, false);
+addBookToLibrary("You Don't Know JS", "Kyle Simpson", 278, true);
+addBookToLibrary("Deep Work", "Cal Newport", 304, true);
+addBookToLibrary("Zero to One", "Peter Thiel", 224, false);
+addBookToLibrary("Atomic Habits", "James Clear", 320, true);
 
 displayLibrary();
