@@ -11,6 +11,12 @@ body {
   justify-content: center;
 }
 
+dialog {
+  margin: auto;
+  padding: 24px;
+  border-radius: 24px;
+}
+
 nav,
 footer {
   display: flex;

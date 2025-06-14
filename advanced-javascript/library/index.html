@@ -14,16 +14,37 @@
     </nav>
 
     <main>
-      <div class="card-container">
-        
-      </div>
+      <div class="card-container"></div>
       <div class="button-container">
-        <button id="newBook">+ New Book</button>
+        <button id="create-book">+ New Book</button>
       </div>
     </main>
 
     <footer>
       <p>Copyright © The Odin Project 2025</p>
     </footer>
+
+    <dialog>
+      <form method="dialog">
+        <div class="form-group">
+          <label for="title">Title:</label>
+          <input id="title" type="text" />
+        </div>
+        <div class="form-group">
+          <label for="author">Author:</label>
+          <input id="author" type="text" />
+        </div>
+        <div class="form-group">
+          <label for="pages">Pages:</label>
+          <input id="pages" type="number" />
+        </div>
+        <div class="form-group">
+          <label for="isRead">Read:</label>
+          <input id="isRead" type="checkbox" />
+        </div>
+
+        <input id="submit" type="submit" />
+      </form>
+    </dialog>
   </body>
 </html>

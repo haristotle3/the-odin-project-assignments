@@ -1,4 +1,7 @@
 const myLibrary = [];
+const createBookButton = document.querySelector("#create-book");
+const dialog = document.querySelector("dialog");
+const form = document.querySelector("form");
 
 function Book(title, author, pages, isRead) {
   this.title = title;
@@ -24,9 +27,29 @@ Book.prototype.toggleRead = function () {
   return;
 };
 
+createBookButton.addEventListener("click", () => {
+  dialog.showModal();
+});
+
+dialog.addEventListener("close", () => {
+  dialog.close();
+});
+
+dialog.showModal();
+
+form.addEventListener("submit", (e) => {
+  const title = document.querySelector("form #title");
+  const author = document.querySelector("form #author");
+  const pages = document.querySelector("form #pages");
+  const isRead = document.querySelector("form #isRead");
+
+  addBookToLibrary(title.value, author.value, pages.value, isRead.value);
+});
+
 function addBookToLibrary(title, author, pages, isRead) {
   let book = new Book(title, author, pages, isRead);
   myLibrary.push(book);
+  displayLibrary();
   return;
 }
 
