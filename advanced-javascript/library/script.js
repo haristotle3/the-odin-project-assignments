@@ -47,15 +47,14 @@ form.addEventListener("submit", (e) => {
 });
 
 deleteEventHandler.addEventListener("click", (e) => {
-  let removalIndex = 0;
+  let removalIndex = undefined;
   for (let book of myLibrary) {
     if (book.id == e.target.dataset.id) {
       removalIndex = myLibrary.indexOf(book);
       break;
     }
   }
-
-  myLibrary.splice(removalIndex, 1);
+  if (removalIndex !== undefined) myLibrary.splice(removalIndex, 1);
   displayLibrary();
 });
 
@@ -95,8 +94,8 @@ function createNode(book) {
 
   const deleteButton = document.createElement("button");
   deleteButton.textContent = "Delete";
-
   deleteButton.dataset.id = book.id;
+
   node.append(label);
   node.appendChild(readButton);
   node.appendChild(deleteButton);
