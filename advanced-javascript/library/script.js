@@ -2,7 +2,6 @@ const myLibrary = [];
 const createBookButton = document.querySelector("#create-book");
 const dialog = document.querySelector("dialog");
 const form = document.querySelector("form");
-const deleteEventHandler = document.querySelector(".card-container");
 
 function Book(title, author, pages, isRead) {
   this.title = title;
@@ -46,18 +45,6 @@ form.addEventListener("submit", (e) => {
   displayLibrary();
 });
 
-deleteEventHandler.addEventListener("click", (e) => {
-  let removalIndex = undefined;
-  for (let book of myLibrary) {
-    if (book.id == e.target.dataset.id) {
-      removalIndex = myLibrary.indexOf(book);
-      break;
-    }
-  }
-  if (removalIndex !== undefined) myLibrary.splice(removalIndex, 1);
-  displayLibrary();
-});
-
 function addBookToLibrary(title, author, pages, isRead) {
   let book = new Book(title, author, pages, isRead);
   myLibrary.push(book);
@@ -90,11 +77,19 @@ function createNode(book) {
 
   const readButton = document.createElement("input");
   readButton.type = "checkbox";
-  readButton.style.justifySelf = "start";
+  readButton.checked = book.isRead ? true : false;
+  readButton.addEventListener("click", () => {
+    book.toggleRead();
+    console.log(book);
+  });
 
   const deleteButton = document.createElement("button");
   deleteButton.textContent = "Delete";
-  deleteButton.dataset.id = book.id;
+  deleteButton.addEventListener("click", () => {
+    let removalIndex = myLibrary.indexOf(book);
+    myLibrary.splice(removalIndex, 1);
+    displayLibrary();
+  });
 
   node.append(label);
   node.appendChild(readButton);
