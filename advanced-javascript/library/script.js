@@ -41,7 +41,7 @@ form.addEventListener("submit", (e) => {
   const pages = document.querySelector("form #pages");
   const isRead = document.querySelector("form #isRead");
 
-  addBookToLibrary(title.value, author.value, pages.value, isRead.value);
+  addBookToLibrary(title.value, author.value, pages.value, isRead.checked);
   displayLibrary();
 });
 
@@ -90,6 +90,8 @@ function createNode(book) {
     myLibrary.splice(removalIndex, 1);
     displayLibrary();
   });
+
+  node.dataset.id = book.id;
 
   node.append(label);
   node.appendChild(readButton);
