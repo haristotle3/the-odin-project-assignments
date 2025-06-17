@@ -32,7 +32,7 @@ class Library {
   addBookToLibrary(title, author, pages, isRead) {
     let book = new Book(title, author, pages, isRead);
     this.myLibrary.push(book);
-    console.log(this.myLibrary)
+    console.log(this.myLibrary);
     return;
   }
 
@@ -76,6 +76,41 @@ class DisplayController {
       );
       this.displayLibrary();
     });
+
+    this.initLibrary();
+  }
+
+  initLibrary() {
+    this.library.addBookToLibrary(
+      "A Mind For Numbers",
+      "Barbara Oakley",
+      450,
+      true
+    );
+    this.library.addBookToLibrary("Clean Code", "Robert C. Martin", 464, true);
+    this.library.addBookToLibrary(
+      "Introduction to Algorithms",
+      "Thomas H. Cormen",
+      1312,
+      false
+    );
+    this.library.addBookToLibrary("Design Patterns", "Erich Gamma", 395, true);
+    this.library.addBookToLibrary(
+      "The Pragmatic Programmer",
+      "Andrew Hunt",
+      352,
+      false
+    );
+    this.library.addBookToLibrary(
+      "You Don't Know JS",
+      "Kyle Simpson",
+      278,
+      true
+    );
+    this.library.addBookToLibrary("Deep Work", "Cal Newport", 304, true);
+    this.library.addBookToLibrary("Zero to One", "Peter Thiel", 224, false);
+    this.library.addBookToLibrary("Atomic Habits", "James Clear", 320, true);
+    this.displayLibrary();
   }
 
   capitalizeFirstLetter(string) {
@@ -148,6 +183,6 @@ class DisplayController {
     }
     return;
   }
-};
+}
 
 const displayContoller = new DisplayController();
