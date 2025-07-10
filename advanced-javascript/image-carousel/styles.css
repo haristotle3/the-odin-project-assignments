@@ -1,0 +1,68 @@
+body {
+  height: 100vh;
+  display: flex;
+}
+
+.image-carousel {
+  margin: auto;
+  width: 900px;
+  height: 500px;
+
+  display: grid;
+  grid-template-columns: 100px 700px 100px;
+  grid-template-rows: 400px 40px;
+}
+
+.image-carousel > button {
+  background-color: white;
+  border: none;
+  outline: none;
+  font-size: 48px;
+}
+
+.images-container {
+  display: flex;
+  height: 100%;
+  width: auto;
+  background-color: rgba(128, 128, 128, 0.4);
+}
+
+.image {
+  height: 100%;
+  width: auto;
+  object-fit: contain;
+  overflow: hidden;
+  flex-shrink: 0;
+}
+
+img {
+  height: 400px;
+  width: 700px;
+  overflow: hidden;
+}
+
+nav.navigation-dots {
+  grid-column: 2/3;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 8px;
+}
+
+nav.navigation-dots > button {
+  border-radius: 50%;
+  margin: 0;
+  padding: 0;
+  height: 12px;
+  width: 12px;
+  background-color: white;
+  border: 1px solid black;
+}
+
+.image-carousel .images-container .image:not(.current) {
+  display: none;
+}
+
+nav button.current {
+  background-color: grey;
+}
