@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Form Validation</title>
+
+    <link rel="stylesheet" href="styles.css" />
+    <script src="index.js" defer></script>
+  </head>
+  <body>
+    <form novalidate>
+      <label for="email">
+        <span>Email (@harishpatil.com):</span>
+        <input type="email" name="email" id="email" required />
+      </label>
+
+      <label for="country">
+        <span>Country:</span>
+        <input
+          type="text"
+          name="country"
+          id="country"
+          required
+          pattern="([Ii]ndia)|([Cc]hina)|(USA)|([Rr]ussia)|([Gg]ermany)|(UK)"
+        />
+      </label>
+
+      <label for="postalcode">
+        <span>Postal Code (XXX-XXX):</span>
+        <input
+          type="text"
+          name="postalcode"
+          id="postalcode"
+          required
+          pattern="\d{3}-\d{3}"
+        />
+      </label>
+
+      <label for="password">
+        <span>Password:</span>
+        <input
+          type="password"
+          name="password"
+          id="password"
+          pattern="^(?=.*[A-Z].*[A-Z])(?=.*[!@#$&*])(?=.*[0-9].*[0-9])(?=.*[a-z].*[a-z].*[a-z]).{8}$"
+          required
+        />
+      </label>
+
+      <label for="passwordConfirm">
+        <span>Confirm Password:</span>
+        <input
+          type="password"
+          name="passwordConfirm"
+          id="passwordConfirm"
+          required
+        />
+      </label>
+
+      <input type="submit" />
+    </form>
+    <h1 style="visibility:hidden;">HIGH FIVE</h1>
+  </body>
+</html>
