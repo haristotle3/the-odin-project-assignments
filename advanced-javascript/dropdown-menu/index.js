@@ -5,7 +5,6 @@ dropdownButtons.forEach((dropdownButton) => {
     const dropdownContentContainer = document.querySelector(
       `.dropdown-content-container[data-id="${dropdownButton.dataset.id}"]`
     );
-    uu
     dropdownButton.textContent === "⤴"
       ? (dropdownButton.textContent = "⤵")
       : (dropdownButton.textContent = "⤴");
