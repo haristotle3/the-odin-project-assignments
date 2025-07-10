@@ -32,7 +32,6 @@ class Library {
   addBookToLibrary(title, author, pages, isRead) {
     let book = new Book(title, author, pages, isRead);
     this.myLibrary.push(book);
-    console.log(this.myLibrary);
     return;
   }
 
@@ -53,6 +52,22 @@ class DisplayController {
     this.createBookButton = document.querySelector("#create-book");
     this.dialog = document.querySelector("dialog");
     this.form = document.querySelector("form");
+    this.inputs = document.querySelectorAll("form input");
+
+    this.inputs.forEach((inpEle) => {
+      inpEle.addEventListener("input", () => {
+        if (inpEle.validity.rangeUnderflow) {
+          inpEle.setCustomValidity(`The book should contain minimum one page!`);
+        } else {
+          inpEle.setCustomValidity(``);
+        }
+
+        if (inpEle.validity.patternMismatch)
+          inpEle.setCustomValidity(
+            `Enter a name you idiot! What author is named in number!!`
+          );
+      });
+    });
 
     this.createBookButton.addEventListener("click", () => {
       this.dialog.showModal();
@@ -142,7 +157,6 @@ class DisplayController {
     readButton.checked = book.isRead ? true : false;
     readButton.addEventListener("click", () => {
       book.toggleRead();
-      console.log(book);
     });
 
     const deleteButton = document.createElement("button");
