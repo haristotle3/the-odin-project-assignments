@@ -6,9 +6,10 @@ const passwordConfirmInput = document.getElementById("passwordConfirm");
 const form = document.querySelector("form");
 
 emailInput.addEventListener("input", () => {
-  if (emailInput.validity.typeMismatch)
+  if (emailInput.validity.typeMismatch) {
     emailInput.setCustomValidity("This is an email input field");
-  else emailInput.setCustomValidity("");
+    return;
+  } else emailInput.setCustomValidity("");
 
   if (!emailInput.value.endsWith("@haristotlepatil.com"))
     emailInput.setCustomValidity(
