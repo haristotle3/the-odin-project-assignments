@@ -14,4 +14,14 @@ const fibs = (n) => {
   return fibArr;
 };
 
-console.log(fibs(8));
+const fibsRec = (n) => {
+  if (n === 0) return [];
+  else if (n === 1) return [0];
+  else if (n === 2) return [0, 1];
+
+  const fibsArr = fibsRec(n - 1);
+  return [...fibsArr, fibsArr[(n - 1) - 2] + fibsArr[(n - 1) - 1]];
+};
+
+console.log(fibs(16));
+console.log(fibsRec(16));
