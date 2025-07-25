@@ -120,6 +120,19 @@ class LinkedList {
     return null;
   }
 
+  updateNode(key, value) {
+    let current = this.head;
+    while (current) {
+      if (current.key === key) {
+        current.value = value;
+        return true;
+      }
+      current = current.nextNode;
+    }
+
+    return null;
+  }
+
   toString() {
     if (!this.head) return "null";
 
