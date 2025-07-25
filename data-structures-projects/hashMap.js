@@ -139,7 +139,7 @@ class LinkedList {
     let current = this.head;
     let rv = ``;
     while (current) {
-      rv += " ( " + current.value + " ) -> ";
+      rv += "{" + current.key + ":" + current.value + "}-> ";
       current = current.nextNode;
     }
 
@@ -149,7 +149,7 @@ class LinkedList {
 }
 
 class HashMap {
-  constructor(capacity = 16, loadFactor = 0.7) {
+  constructor(capacity = 16, loadFactor = 0.8) {
     this.loadFactor = loadFactor;
     this.capacity = capacity;
     this.buckets = Array(this.capacity).fill(null);
@@ -157,7 +157,7 @@ class HashMap {
 
   loadFactorExceeded() {
     const threshold = this.capacity * this.loadFactor;
-    return this.length() >= threshold;
+    return this.length() > threshold;
   }
 
   tooSparse() {
@@ -169,7 +169,7 @@ class HashMap {
   growHashMap() {
     this.capacity *= 2;
 
-    const oldBuckets = this.buckets;
+    const oldBuckets = this.buckets.filter((element) => element !== null);
     this.buckets = Array(this.capacity).fill(null);
 
     oldBuckets.forEach((linkedList) => {
@@ -189,7 +189,7 @@ class HashMap {
   shrinkHashMap() {
     this.capacity = Math.floor(this.capacity / 2);
 
-    const oldBuckets = this.buckets;
+    const oldBuckets = this.buckets.filter((element) => element !== null);
     this.buckets = Array(this.capacity).fill(null);
 
     oldBuckets.forEach((linkedList) => {
@@ -226,7 +226,6 @@ class HashMap {
 
     this.buckets[index].append(key, value);
     if (this.loadFactorExceeded()) this.growHashMap();
-
     return INSERT_RV;
   }
 
@@ -329,5 +328,70 @@ class HashMap {
 
     return entryArr;
   }
+
+  display() {
+    this.buckets.forEach((linkedList, index) => {
+      if (!linkedList) {
+        console.log(index, ":", linkedList);
+      } else {
+        console.log(index, ":", linkedList.toString());
+      }
+    });
+
+    return;
+  }
 }
 
+const test = new HashMap(16, 0.75);
+
+// test.set("apple", "red");
+// test.set("banana", "yellow");
+// test.set("carrot", "orange");
+// test.set("dog", "brown");
+// test.set("elephant", "gray");
+// test.set("frog", "green");
+// test.set("grape", "purple");
+// test.set("hat", "black");
+// test.set("ice cream", "white");
+// test.set("jacket", "blue");
+// test.set("kite", "pink");
+// test.set("lion", "golden");
+// test.display();
+// console.log("Length:", test.length(), "LF: ", test.loadFactor * test.capacity);
+// test.set("kite", "purple");
+// test.set("ice cream", "yellow");
+// test.set("frog", "dark green");
+// test.display();
+// console.log("Length:", test.length(), "LF: ", test.loadFactor * test.capacity);
+// test.set("moon", "silver");
+// test.display();
+// console.log("Length:", test.length(), "LF: ", test.loadFactor * test.capacity);
+// test.set("moon", "crimson");
+// test.display();
+// console.log("Length:", test.length(), "LF: ", test.loadFactor * test.capacity);
+// console.log(test.get("frog"));
+// console.log(test.get("donkey"));
+// console.log(test.has("frog"));
+// console.log(test.has("donkey"));
+// console.log(test.remove("frog"));
+// console.log(test.remove("moon"));
+// console.log(test.remove("donkey"));
+// console.log(test.remove("ice cream"));
+// console.log(test.keys());
+// console.log(test.values());
+// console.log(test.entries());
+// test.display();
+// test.remove("apple");
+// test.remove("banana");
+// test.remove("carrot");
+// test.remove("dog");
+// test.remove("elephant");
+// test.remove("frog");
+// test.remove("grape");
+// test.remove("hat");
+// test.remove("ice cream");
+// test.remove("jacket");
+// test.remove("kite");
+// test.remove("lion");
+// test.remove("lion");
+// test.display();
