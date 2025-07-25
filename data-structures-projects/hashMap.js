@@ -344,54 +344,64 @@ class HashMap {
 
 const test = new HashMap(16, 0.75);
 
-// test.set("apple", "red");
-// test.set("banana", "yellow");
-// test.set("carrot", "orange");
-// test.set("dog", "brown");
-// test.set("elephant", "gray");
-// test.set("frog", "green");
-// test.set("grape", "purple");
-// test.set("hat", "black");
-// test.set("ice cream", "white");
-// test.set("jacket", "blue");
-// test.set("kite", "pink");
-// test.set("lion", "golden");
-// test.display();
-// console.log("Length:", test.length(), "LF: ", test.loadFactor * test.capacity);
-// test.set("kite", "purple");
-// test.set("ice cream", "yellow");
-// test.set("frog", "dark green");
-// test.display();
-// console.log("Length:", test.length(), "LF: ", test.loadFactor * test.capacity);
-// test.set("moon", "silver");
-// test.display();
-// console.log("Length:", test.length(), "LF: ", test.loadFactor * test.capacity);
-// test.set("moon", "crimson");
-// test.display();
-// console.log("Length:", test.length(), "LF: ", test.loadFactor * test.capacity);
-// console.log(test.get("frog"));
-// console.log(test.get("donkey"));
-// console.log(test.has("frog"));
-// console.log(test.has("donkey"));
-// console.log(test.remove("frog"));
-// console.log(test.remove("moon"));
-// console.log(test.remove("donkey"));
-// console.log(test.remove("ice cream"));
-// console.log(test.keys());
-// console.log(test.values());
-// console.log(test.entries());
-// test.display();
-// test.remove("apple");
-// test.remove("banana");
-// test.remove("carrot");
-// test.remove("dog");
-// test.remove("elephant");
-// test.remove("frog");
-// test.remove("grape");
-// test.remove("hat");
-// test.remove("ice cream");
-// test.remove("jacket");
-// test.remove("kite");
-// test.remove("lion");
-// test.remove("lion");
-// test.display();
+test.set("apple", "red");
+test.set("banana", "yellow");
+test.set("carrot", "orange");
+test.set("dog", "brown");
+test.set("elephant", "gray");
+test.set("frog", "green");
+test.set("grape", "purple");
+test.set("hat", "black");
+test.set("ice cream", "white");
+test.set("jacket", "blue");
+test.set("kite", "pink");
+test.set("lion", "golden");
+test.display();
+console.log("Length:", test.length(), "LF: ", test.loadFactor * test.capacity);
+
+test.set("kite", "purple");
+test.set("ice cream", "yellow");
+test.set("frog", "dark green");
+test.display();
+console.log("Length:", test.length(), "LF: ", test.loadFactor * test.capacity);
+
+test.set("moon", "silver");
+test.display();
+console.log("Length:", test.length(), "LF: ", test.loadFactor * test.capacity);
+
+test.set("moon", "crimson");
+test.display();
+console.log("Length:", test.length(), "LF: ", test.loadFactor * test.capacity);
+
+console.log(test.get("frog"));
+console.log(test.get("donkey"));
+
+console.log(test.has("frog"));
+console.log(test.has("donkey"));
+
+console.log(test.remove("frog"));
+console.log(test.remove("moon"));
+console.log(test.remove("donkey"));
+console.log(test.remove("ice cream"));
+
+console.log(test.keys());
+console.log(test.values());
+console.log(test.entries());
+
+test.display();
+
+test.remove("apple");
+test.remove("banana");
+test.remove("carrot");
+test.remove("dog");
+test.remove("elephant");
+test.remove("frog");
+test.remove("grape");
+test.remove("hat");
+test.remove("ice cream");
+test.remove("jacket");
+test.remove("kite");
+test.remove("lion");
+test.remove("lion");
+
+test.display();
