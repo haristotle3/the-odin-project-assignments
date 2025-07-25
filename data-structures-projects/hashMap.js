@@ -155,11 +155,72 @@ class HashMap {
     this.buckets = Array(this.capacity).fill(null);
   }
 
+  loadFactorExceeded() {
+    const threshold = this.capacity * this.loadFactor;
+    return this.length() >= threshold;
+  }
+
+  tooSparse() {
+    if (this.capacity <= 16) return false;
+    const sparseLimit = Math.floor(this.capacity / 2) * this.loadFactor;
+    return this.length() < sparseLimit;
+  }
+
+  growHashMap() {
+    this.capacity *= 2;
+
+    const oldBuckets = this.buckets;
+    this.buckets = Array(this.capacity).fill(null);
+
+    oldBuckets.forEach((linkedList) => {
+      for (
+        let current = linkedList.head;
+        current !== null;
+        current = current.nextNode
+      ) {
+        this.set(current.key, current.value);
+      }
+    });
+
+    console.log(`Hash Map grown to size: `, this.capacity);
+    return;
+  }
+
+  shrinkHashMap() {
+    this.capacity = Math.floor(this.capacity / 2);
+
+    const oldBuckets = this.buckets;
+    this.buckets = Array(this.capacity).fill(null);
+
+    oldBuckets.forEach((linkedList) => {
+      for (
+        let current = linkedList.head;
+        current !== null;
+        current = current.nextNode
+      ) {
+        this.set(current.key, current.value);
+      }
+    });
+
+    console.log(`Hash Map shrunk to size: `, this.capacity);
+    return;
+  }
+
   hash(key) {
     return murmur3.x86.hash32(key);
   }
 
-  set(key, value) {}
+  set(key, value) {
+    if (this.has(key)) {
+      const index = this.hash(key) % this.capacity;
+      const list = this.buckets[index];
+
+      if (!list) this.buckets[index] = new LinkedList();
+      this.buckets[index].append(key, value);
+
+      if (this.loadFactorExceeded()) this.growHashMap();
+    }
+  }
 
   get(key) {
     if (!this.has(key)) return null;
@@ -193,7 +254,7 @@ class HashMap {
     if (list.size() === 0) {
       this.buckets[index] = null;
     }
-
+    if (this.tooSparse) this.shrinkHashMap();
     return true;
   }
 
