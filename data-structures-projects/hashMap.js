@@ -211,15 +211,23 @@ class HashMap {
   }
 
   set(key, value) {
+    const index = this.hash(key) % this.capacity;
+    const UPDATE_RV = 200;
+    const INSERT_RV = 400;
+
     if (this.has(key)) {
-      const index = this.hash(key) % this.capacity;
-      const list = this.buckets[index];
-
-      if (!list) this.buckets[index] = new LinkedList();
-      this.buckets[index].append(key, value);
-
-      if (this.loadFactorExceeded()) this.growHashMap();
+      this.buckets[index].updateNode(key, value);
+      return UPDATE_RV;
     }
+
+    if (!this.buckets[index]) {
+      this.buckets[index] = new LinkedList();
+    }
+
+    this.buckets[index].append(key, value);
+    if (this.loadFactorExceeded()) this.growHashMap();
+
+    return INSERT_RV;
   }
 
   get(key) {
@@ -254,7 +262,7 @@ class HashMap {
     if (list.size() === 0) {
       this.buckets[index] = null;
     }
-    if (this.tooSparse) this.shrinkHashMap();
+    if (this.tooSparse()) this.shrinkHashMap();
     return true;
   }
 
@@ -322,3 +330,4 @@ class HashMap {
     return entryArr;
   }
 }
+
