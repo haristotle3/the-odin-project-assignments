@@ -87,6 +87,13 @@ class Tree {
     this.root = this.#deleteItemRecursive(value, this.root);
     return 0;
   }
+
+  find(value, node = this.root) {
+    if (node === null) return node;
+    if (node.data === value) return node;
+    if (value < node.data) return this.find(value, node.leftChild);
+    return this.find(value, node.rightChild);
+  }
 }
 
 const prettyPrint = (node, prefix = "", isLeft = true) => {
@@ -106,3 +113,19 @@ const arr = [1, 7, 4, 23, 8, 9, 4, 3, 5, 7, 9, 67, 6345, 324];
 
 const test = new Tree(arr);
 
+test.insert(69);
+test.insert(7);
+test.insert(123);
+test.insert(6);
+prettyPrint(test.root);
+
+test.deleteItem(6345);
+test.deleteItem(7);
+test.deleteItem(69);
+test.deleteItem(8);
+prettyPrint(test.root);
+
+console.log(test.find(9));
+console.log(test.find(5));
+console.log(test.find(324));
+console.log(test.find(-1));
