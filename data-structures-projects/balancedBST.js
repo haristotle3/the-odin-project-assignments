@@ -248,6 +248,17 @@ class Tree {
   isBalanced() {
     return this.#isBalancedRecursive().balanced;
   }
+
+  rebalance() {
+    const sortedArr = [];
+    this.inOrderForEach((node) => {
+      sortedArr.push(node.data);
+    });
+    this.root = this.buildTree(sortedArr);
+
+    // beautiful isn't it :)
+    return 0;
+  }
 }
 
 const prettyPrint = (node, prefix = "", isLeft = true) => {
@@ -270,9 +281,9 @@ const test = new Tree(arr);
 test.insert(69);
 test.insert(7);
 test.insert(123);
+test.insert(98);
+test.insert(76);
 test.insert(6);
-test.insert(2);
-test.insert(2);
 test.insert(2);
 
 prettyPrint(test.root);
@@ -281,8 +292,6 @@ test.deleteItem(6345);
 test.deleteItem(7);
 test.deleteItem(69);
 test.deleteItem(8);
-test.deleteItem(2);
-test.deleteItem(3);
 prettyPrint(test.root);
 
 console.log(test.find(9));
@@ -312,4 +321,11 @@ console.log();
 
 console.log(`Height of the tree: ${test.height(test.root.data)}`);
 console.log(`Depth of the node ${3}: ${test.depth(3)}`);
+
 console.log(`Balanced? : ${test.isBalanced()}`);
+prettyPrint(test.root);
+
+test.rebalance();
+
+console.log(`Balanced? : ${test.isBalanced()}`);
+prettyPrint(test.root);
