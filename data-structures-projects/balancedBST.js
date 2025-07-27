@@ -274,72 +274,46 @@ const prettyPrint = (node, prefix = "", isLeft = true) => {
   }
 };
 
-const arr = [1, 7, 4, 23, 8, 9, 4, 3, 5, 7, 9, 67, 6345, 324];
+const arrayCreator = () => {
+  const arr = [];
+  for (let i = 0; i < 100; i++) arr.push(Math.floor(100 * Math.random()));
+  return arr;
+};
 
-const test = new Tree(arr);
+const arr = arrayCreator();
 
-test.insert(69);
-test.insert(7);
-test.insert(123);
-test.insert(98);
-test.insert(76);
-test.insert(6);
-test.insert(2);
+const bst = new Tree(arr);
+prettyPrint(bst.root);
+console.log(`Balanced? : ${bst.isBalanced()}`);
 
-prettyPrint(test.root);
-
-test.deleteItem(6345);
-test.deleteItem(7);
-test.deleteItem(69);
-test.deleteItem(8);
-prettyPrint(test.root);
-
-console.log(test.find(9));
-console.log(test.find(5));
-console.log(test.find(324));
-console.log(test.find(-1));
-
-test.levelOrderForEach((node) => {
+console.log(`Inorder Traversal:`);
+bst.inOrderForEach((node) => {
   console.log(node.data);
 });
-console.log();
 
-test.inOrderForEach((node) => {
+console.log(`Preorder Traversal:`);
+bst.preOrderForEach((node) => {
   console.log(node.data);
 });
-console.log();
 
-test.preOrderForEach((node) => {
+console.log(`Postorder Traversal:`);
+bst.postOrderForEach((node) => {
   console.log(node.data);
 });
-console.log();
 
-test.postOrderForEach((node) => {
+for (let i = 100; i < 150; i++) {
+  bst.insert(i);
+}
+
+prettyPrint(bst.root);
+console.log(`Balanced? : ${bst.isBalanced()}`);
+
+bst.rebalance();
+
+prettyPrint(bst.root);
+console.log(`Balanced? : ${bst.isBalanced()}`);
+
+console.log(`Level order Traversal:`);
+bst.levelOrderForEach((node) => {
   console.log(node.data);
 });
-console.log();
-
-console.log(`Height of the tree: ${test.height(test.root.data)}`);
-console.log(`Depth of the node ${3}: ${test.depth(3)}`);
-
-prettyPrint(test.root);
-console.log(`Balanced? : ${test.isBalanced()}`);
-
-test.rebalance();
-
-prettyPrint(test.root);
-console.log(`Balanced? : ${test.isBalanced()}`);
-
-test.insert(345)
-test.insert(456)
-test.insert(567)
-test.insert(678)
-test.insert(789)
-
-prettyPrint(test.root);
-console.log(`Balanced? : ${test.isBalanced()}`);
-
-test.rebalance();
-
-prettyPrint(test.root);
-console.log(`Balanced? : ${test.isBalanced()}`);
