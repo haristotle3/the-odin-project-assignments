@@ -213,7 +213,40 @@ class Tree {
 
   height(value) {
     const node = this.find(value);
+
+    if (node === null) return null;
     return this.#heightRecursive(node);
+  }
+
+  depth(value, node = this.root, currDepth = 0) {
+    if (node === null) return null;
+
+    if (node.data === value) return currDepth;
+
+    if (value < node.data)
+      return this.depth(value, node.leftChild, currDepth + 1);
+
+    return this.depth(value, node.rightChild, currDepth + 1);
+  }
+
+  #isBalancedRecursive(node = this.root) {
+    if (node === null) return { balanced: true, height: -1 };
+    const [leftSubtree, rightSubtree] = [
+      this.#isBalancedRecursive(node.leftChild),
+      this.#isBalancedRecursive(node.rightChild),
+    ];
+
+    return {
+      balanced:
+        leftSubtree.balanced &&
+        rightSubtree.balanced &&
+        Math.abs(leftSubtree.height - rightSubtree.height) <= 1,
+      height: 1 + Math.max(leftSubtree.height, rightSubtree.height),
+    };
+  }
+
+  isBalanced() {
+    return this.#isBalancedRecursive().balanced;
   }
 }
 
@@ -248,6 +281,8 @@ test.deleteItem(6345);
 test.deleteItem(7);
 test.deleteItem(69);
 test.deleteItem(8);
+test.deleteItem(2);
+test.deleteItem(3);
 prettyPrint(test.root);
 
 console.log(test.find(9));
@@ -276,3 +311,5 @@ test.postOrderForEach((node) => {
 console.log();
 
 console.log(`Height of the tree: ${test.height(test.root.data)}`);
+console.log(`Depth of the node ${3}: ${test.depth(3)}`);
+console.log(`Balanced? : ${test.isBalanced()}`);
