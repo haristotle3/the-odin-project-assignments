@@ -111,44 +111,109 @@ class Tree {
         if (node.leftChild) queue.push(node.leftChild);
         if (node.rightChild) queue.push(node.rightChild);
       }
+
+      return 0;
     } catch (err) {
       console.log(err);
       return null;
+    }
+  }
+
+  // recursive
+  // levelOrderForEach(callback, queue = null) {
+  //   try {
+  //     if (!callback) throw new Error("No callback provided.");
+
+  //     if (!queue) {
+  //       queue = [];
+  //       this.root.level = 0;
+  //       queue.push(this.root);
+  //     }
+
+  //     if (queue.length === 0) return 0;
+
+  //     const node = queue.shift();
+  //     callback(node);
+
+  //     if (node.leftChild) {
+  //       node.leftChild.level = node.level + 1;
+  //       queue.push(node.leftChild);
+  //     }
+  //     if (node.rightChild) {
+  //       node.rightChild.level = node.level + 1;
+  //       queue.push(node.rightChild);
+  //     }
+
+  //     return this.levelOrderForEach(callback, queue);
+  //   } catch (err) {
+  //     console.log(err);
+  //     return null;
+  //   }
+  // }
+
+  inOrderForEach(callback, node = this.root) {
+    if (!node) return null;
+
+    try {
+      if (!callback) throw new Error("No callback provided");
+
+      this.inOrderForEach(callback, node.leftChild);
+      callback(node);
+      this.inOrderForEach(callback, node.rightChild);
+    } catch (err) {
+      console.log(err);
     }
 
     return 0;
   }
 
-  // recursive
-  levelOrderForEach(callback, queue = null) {
+  preOrderForEach(callback, node = this.root) {
+    if (!node) return null;
+
     try {
-      if (!callback) throw new Error("No callback provided.");
+      if (!callback) throw new Error("No callback provided");
 
-      if (!queue) {
-        queue = [];
-        this.root.level = 0;
-        queue.push(this.root);
-      }
-
-      if (queue.length === 0) return 0;
-
-      const node = queue.shift();
       callback(node);
-
-      if (node.leftChild) {
-        node.leftChild.level = node.level + 1;
-        queue.push(node.leftChild);
-      }
-      if (node.rightChild) {
-        node.rightChild.level = node.level + 1;
-        queue.push(node.rightChild);
-      }
-
-      return this.levelOrderForEach(callback, queue);
+      this.preOrderForEach(callback, node.leftChild);
+      this.preOrderForEach(callback, node.rightChild);
     } catch (err) {
       console.log(err);
-      return null;
     }
+
+    return 0;
+  }
+
+  postOrderForEach(callback, node = this.root) {
+    if (!node) return null;
+
+    try {
+      if (!callback) throw new Error("No callback provided");
+
+      this.postOrderForEach(callback, node.leftChild);
+      this.postOrderForEach(callback, node.rightChild);
+      callback(node);
+    } catch (err) {
+      console.log(err);
+    }
+
+    return 0;
+  }
+
+  #heightRecursive(node) {
+    if (node === null) return -1;
+
+    return (
+      1 +
+      Math.max(
+        this.#heightRecursive(node.leftChild),
+        this.#heightRecursive(node.rightChild)
+      )
+    );
+  }
+
+  height(value) {
+    const node = this.find(value);
+    return this.#heightRecursive(node);
   }
 }
 
@@ -173,6 +238,10 @@ test.insert(69);
 test.insert(7);
 test.insert(123);
 test.insert(6);
+test.insert(2);
+test.insert(2);
+test.insert(2);
+
 prettyPrint(test.root);
 
 test.deleteItem(6345);
@@ -187,6 +256,23 @@ console.log(test.find(324));
 console.log(test.find(-1));
 
 test.levelOrderForEach((node) => {
-  node.data *= 2;
+  console.log(node.data);
 });
-prettyPrint(test.root);
+console.log();
+
+test.inOrderForEach((node) => {
+  console.log(node.data);
+});
+console.log();
+
+test.preOrderForEach((node) => {
+  console.log(node.data);
+});
+console.log();
+
+test.postOrderForEach((node) => {
+  console.log(node.data);
+});
+console.log();
+
+console.log(`Height of the tree: ${test.height(test.root.data)}`);
