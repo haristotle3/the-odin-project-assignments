@@ -94,6 +94,30 @@ class Tree {
     if (value < node.data) return this.find(value, node.leftChild);
     return this.find(value, node.rightChild);
   }
+
+  // iterative
+  levelOrderForEach(callback) {
+    try {
+      if (!callback) {
+        throw new Error("No callback provided.");
+      }
+
+      const queue = [];
+      queue.push(this.root);
+
+      while (queue.length > 0) {
+        const node = queue.shift();
+        callback(node);
+        if (node.leftChild) queue.push(node.leftChild);
+        if (node.rightChild) queue.push(node.rightChild);
+      }
+    } catch (err) {
+      console.log(err);
+      return null;
+    }
+
+    return 0;
+  }
 }
 
 const prettyPrint = (node, prefix = "", isLeft = true) => {
@@ -129,3 +153,7 @@ console.log(test.find(9));
 console.log(test.find(5));
 console.log(test.find(324));
 console.log(test.find(-1));
+
+test.levelOrderForEach((node) => {
+  console.log(node.data);
+});
