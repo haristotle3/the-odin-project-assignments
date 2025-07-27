@@ -322,10 +322,24 @@ console.log();
 console.log(`Height of the tree: ${test.height(test.root.data)}`);
 console.log(`Depth of the node ${3}: ${test.depth(3)}`);
 
-console.log(`Balanced? : ${test.isBalanced()}`);
 prettyPrint(test.root);
+console.log(`Balanced? : ${test.isBalanced()}`);
 
 test.rebalance();
 
-console.log(`Balanced? : ${test.isBalanced()}`);
 prettyPrint(test.root);
+console.log(`Balanced? : ${test.isBalanced()}`);
+
+test.insert(345)
+test.insert(456)
+test.insert(567)
+test.insert(678)
+test.insert(789)
+
+prettyPrint(test.root);
+console.log(`Balanced? : ${test.isBalanced()}`);
+
+test.rebalance();
+
+prettyPrint(test.root);
+console.log(`Balanced? : ${test.isBalanced()}`);
