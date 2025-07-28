@@ -10,29 +10,29 @@ function arrayEqual(x, y) {
   return arr1 === arr2;
 }
 
-// function neighbouringNodes(currentNode) {
-//   const [x, y] = [currentNode[0], currentNode[1]];
+function neighbouringNodes(currentNode) {
+  const [x, y] = [currentNode[0], currentNode[1]];
 
-//   const neighbourDist = [
-//     [2, 1],
-//     [2, -1],
-//     [-2, 1],
-//     [-2, -1],
-//     [1, 2],
-//     [-1, 2],
-//     [1, -2],
-//     [-1, -2],
-//   ];
+  const neighbourDist = [
+    [2, 1],
+    [2, -1],
+    [-2, 1],
+    [-2, -1],
+    [1, 2],
+    [-1, 2],
+    [1, -2],
+    [-1, -2],
+  ];
 
-//   const neighbours = [];
+  const neighbours = [];
 
-//   for (let neiDist of neighbourDist) {
-//     const neighbourNode = [x + neiDist[0], y + neiDist[1]];
-//     if (isWithinBounds(neighbourNode)) neighbours.push(neighbourNode);
-//   }
+  for (let neiDist of neighbourDist) {
+    const neighbourNode = [x + neiDist[0], y + neiDist[1]];
+    if (isWithinBounds(neighbourNode)) neighbours.push(neighbourNode);
+  }
 
-//   return neighbours;
-// }
+  return neighbours;
+}
 
 // function breadthFirstSearch(start, end, queue) {
 //   const visited = new Array(8).fill(new Array(8).fill(false));
