@@ -125,4 +125,12 @@ function knightMoves(start, end) {
   return 0;
 }
 
-knightMoves([0, 0], [2, 2]);
+console.log();
+const start = [0, 7];
+const end = [7, 0];
+
+console.log(`Start: ${pathToCoordinatesMapper([start])}`);
+console.log(`End: ${pathToCoordinatesMapper([end])}`);
+console.log();
+
+knightMoves(start, end);
