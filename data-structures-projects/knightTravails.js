@@ -1,7 +1,7 @@
-// function isWithinBounds(currentNode) {
-//   const [x, y] = [currentNode[0], currentNode[1]];
-//   return x >= 0 && x <= 7 && y >= 0 && y <= 7;
-// }
+function isWithinBounds(currentNode) {
+  const [x, y] = [currentNode[0], currentNode[1]];
+  return x >= 0 && x <= 7 && y >= 0 && y <= 7;
+}
 
 function arrayEqual(x, y) {
   const arr1 = JSON.stringify(x);
