@@ -46,6 +46,19 @@ function getMoves(currentNode, parentMatrix) {
   return moves;
 }
 
+function pathToCoordinatesMapper(path) {
+  const xAxisMap = ["a", "b", "c", "d", "e", "f", "g", "h"];
+  const yAxisMap = [8, 7, 6, 5, 4, 3, 2, 1];
+
+  const pathString = path.map((node) => {
+    const x = node[0];
+    const y = node[1];
+    return "N" + xAxisMap[x] + yAxisMap[y];
+  });
+
+  return pathString;
+}
+
 function getPath(currentNode, parentMatrix) {
   const pathArr = [];
   let [wx, wy] = [currentNode[0], currentNode[1]];
@@ -55,7 +68,8 @@ function getPath(currentNode, parentMatrix) {
     [wx, wy] = parentMatrix[wx][wy];
   }
   pathArr.push([wx, wy]);
-  return pathArr.reverse();
+  pathArr.reverse();
+  return pathToCoordinatesMapper(pathArr);
 }
 
 function breadthFirstSearch(end, queue) {
@@ -107,7 +121,7 @@ function knightMoves(start, end) {
   pathObject.path.forEach((node) => {
     console.log(node);
   });
-  
+
   return 0;
 }
 
