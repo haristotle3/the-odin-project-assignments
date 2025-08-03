@@ -254,10 +254,11 @@ class Tree {
     this.inOrderForEach((node) => {
       sortedArr.push(node.data);
     });
-    this.root = this.buildTree(sortedArr);
+    this.root = this.#buildTreeRecursive(sortedArr);
 
     // beautiful isn't it :)
     return 0;
+
   }
 }
 
